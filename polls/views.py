@@ -1,13 +1,11 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render_to_response,HttpResponse
 
-from .models import Question
-
-
-def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('polls/index.html')
-    context = {
-        'latest_question_list': latest_question_list,
-    }
-    return HttpResponse(template.render(context, request))
+def search_form(request):
+    return render_to_response('polls/index.html')
+	
+def search(request):
+    if 'q' in request.GET:
+        message = 'You searched for: %r' % request.GET['q']
+    else:
+        message = 'You submitted an empty form.'
+    return HttpResponse(message)
