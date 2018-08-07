@@ -26,4 +26,4 @@ class ResultsView(generic.DetailView):
 
 
 def vote(request, question_id):
-    ... # same as above, no changes needed.
+    ... # same as above, no changes needed
